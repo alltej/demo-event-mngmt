@@ -1,4 +1,4 @@
-package com.alltej.troof.demoeventmngmt;
+package com.alltej.eventmngmt;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

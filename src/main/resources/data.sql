@@ -1,0 +1,12 @@
+--INSERT INTO roles(name) VALUES('ROLE_USER');
+--INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+-- MERGE INTO ROLES
+--   KEY(name)
+-- VALUES ('ROLE_USER'),
+--   ('ROLE_ADMIN');
+
+MERGE INTO ROLES
+  KEY(ID)
+VALUES (1, 'ROLE_USER'),
+  (2, 'ROLE_ADMIN');
