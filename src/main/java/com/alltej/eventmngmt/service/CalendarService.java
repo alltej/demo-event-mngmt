@@ -25,12 +25,10 @@ import static com.alltej.eventmngmt.mappers.EventToEventResponseMapper.*;
 @Service
 public class CalendarService implements ICalendarService{
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired private CalendarRepository calendarRepository;
-    @Autowired private EventRepository eventRepository;
-    @Autowired private AttendeeRepository attendeeRepository;
+    @Autowired UserRepository userRepository;
+    @Autowired CalendarRepository calendarRepository;
+    @Autowired EventRepository eventRepository;
+    @Autowired AttendeeRepository attendeeRepository;
 
     @Override
     public Calendar createCalendar(CalendarRequest calendarRequest) {
