@@ -1,21 +1,14 @@
 package com.alltej.eventmngmt.controller;
 
-import com.alltej.eventmngmt.config.SecurityConfig;
 import com.alltej.eventmngmt.data.TestData;
 import com.alltej.eventmngmt.payload.EventResponse;
 import com.alltej.eventmngmt.payload.PagedResponse;
-import com.alltej.eventmngmt.repository.UserRepository;
-import com.alltej.eventmngmt.security.CustomUserDetailsService;
-import com.alltej.eventmngmt.security.JwtAuthenticationEntryPoint;
-import com.alltej.eventmngmt.security.JwtTokenProvider;
 import com.alltej.eventmngmt.service.IEventService;
 import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,13 +23,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author atejano
  */
 @RunWith(SpringRunner.class)
-@WebMvcTest(EventController.class)
-@Import({SecurityConfig.class})
-@DisplayName("Test EventController layer with WebMvc")
+@WebMvcTest(value = EventController.class, secure = false)
+//@Import({SecurityConfig.class})
 public  class EventControllerWebMvcTest {
-
-    @MockBean
-    private JwtTokenProvider tokenProvider;
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,19 +33,11 @@ public  class EventControllerWebMvcTest {
     @MockBean
     private IEventService eventService;
 
-    @MockBean
-    private CustomUserDetailsService customUserDetailsService;
-
-    @MockBean
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
-
-    @MockBean
-    private UserRepository userRepository;
-
+    //@WithMockUser
     @Test
     public void getEvents() throws Exception {
 
-        EventResponse eventResponse = TestData.eventResponse();
+        EventResponse eventResponse = TestData.eventResponseDefault();
 
         PagedResponse<EventResponse> response3 = new PagedResponse<>(asList(eventResponse), 1,
                 10, 1, 1, true);
@@ -71,6 +52,4 @@ public  class EventControllerWebMvcTest {
                 .andExpect(jsonPath("$.content[0].createdBy.username").value(eventResponse.getCreatedBy().getUsername()));
 
     }
-
-
 }

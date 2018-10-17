@@ -33,13 +33,24 @@ public class TestData {
         return createdBy;
     }
 
-    public static EventResponse eventResponse() {
+    public static EventResponse eventResponseDefault() {
         EventResponse eventResponse = new EventResponse();
         eventResponse.setId(11L);
         eventResponse.setTitle("Testing Event 11");
         eventResponse.setEventDateTime(LocalDateTime.of(2018, 10, 20, 8, 0));
         eventResponse.setAttendees(99L);
-        eventResponse.setCreatedBy(new UserSummary(77L, "tester1", "Abc Tester"));
+        eventResponse.setCreatedBy(new UserSummary(77L, "auto-user", "Abc Tester"));
+        eventResponse.setCreationDateTime(Instant.now());
+        return eventResponse;
+    }
+
+    public static EventResponse eventResponseOf(String title, LocalDateTime eventDateTime, Long attendeeCount) {
+        EventResponse eventResponse = new EventResponse();
+        eventResponse.setId(11L);
+        eventResponse.setTitle(title);
+        eventResponse.setEventDateTime(eventDateTime);
+        eventResponse.setAttendees(attendeeCount);
+        eventResponse.setCreatedBy(new UserSummary(77L, "auto-user", "Abc Tester"));
         eventResponse.setCreationDateTime(Instant.now());
         return eventResponse;
     }

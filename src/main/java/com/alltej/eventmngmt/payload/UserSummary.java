@@ -12,7 +12,7 @@ public class UserSummary {
         return new UserSummary(id, username, name);
     }
 
-    private UserSummary(Long id, String username, String name) {
+    public UserSummary(Long id, String username, String name) {
         this.id = id;
         this.username = username;
         this.name = name;

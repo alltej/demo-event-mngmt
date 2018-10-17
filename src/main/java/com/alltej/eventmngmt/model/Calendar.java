@@ -17,6 +17,14 @@ import java.util.List;
 @Entity
 @Table(name = "calendars")
 public class Calendar extends UserDateAudit {
+
+    public static Calendar of(String title, Long createdBy) {
+        Calendar cal = new Calendar();
+        cal.setName(title);
+        cal.setCreatedBy(createdBy);
+        return cal;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

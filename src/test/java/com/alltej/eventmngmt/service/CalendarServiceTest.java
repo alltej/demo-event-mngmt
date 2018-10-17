@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
  */
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
-@DisplayName("Spring boot 2 mockito2 Junit5 example")
+@DisplayName("Spring boot 2 mockito2 Junit5")
 class CalendarServiceTest {
 
     @Mock
