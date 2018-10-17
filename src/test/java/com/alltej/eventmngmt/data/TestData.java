@@ -3,7 +3,10 @@ package com.alltej.eventmngmt.data;
 import com.alltej.eventmngmt.model.Calendar;
 import com.alltej.eventmngmt.model.Event;
 import com.alltej.eventmngmt.model.User;
+import com.alltej.eventmngmt.payload.EventResponse;
+import com.alltej.eventmngmt.payload.UserSummary;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 /**
@@ -28,5 +31,16 @@ public class TestData {
         createdBy.setId(55L);
         createdBy.setUsername("abc");
         return createdBy;
+    }
+
+    public static EventResponse eventResponse() {
+        EventResponse eventResponse = new EventResponse();
+        eventResponse.setId(11L);
+        eventResponse.setTitle("Testing Event 11");
+        eventResponse.setEventDateTime(LocalDateTime.of(2018, 10, 20, 8, 0));
+        eventResponse.setAttendees(99L);
+        eventResponse.setCreatedBy(new UserSummary(77L, "tester1", "Abc Tester"));
+        eventResponse.setCreationDateTime(Instant.now());
+        return eventResponse;
     }
 }
