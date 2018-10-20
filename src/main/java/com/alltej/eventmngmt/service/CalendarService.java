@@ -80,6 +80,7 @@ public class CalendarService implements ICalendarService{
         return response;
     }
 
+    @Deprecated
     @Override
     public Attendee addAttendee(Long calendarId, Long eventId, AttendeeRequest request) {
         final Event event = eventRepository.findById(eventId).filter(e -> e.getCalendar().getId().equals(calendarId))

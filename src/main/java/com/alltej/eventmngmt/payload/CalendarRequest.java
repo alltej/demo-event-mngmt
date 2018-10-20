@@ -11,6 +11,12 @@ public class CalendarRequest {
     @Size(max = 140)
     private String name;
 
+    public static CalendarRequest of(String name) {
+        CalendarRequest cal = new CalendarRequest();
+        cal.setName(name);
+        return cal;
+    }
+
     public String getName() {
         return name;
     }

@@ -1,8 +1,11 @@
 package com.alltej.eventmngmt.service;
 
+import com.alltej.eventmngmt.exception.ResourceNotFoundException;
+import com.alltej.eventmngmt.model.Attendee;
 import com.alltej.eventmngmt.model.Event;
 import com.alltej.eventmngmt.model.EventAttendeeCount;
 import com.alltej.eventmngmt.model.User;
+import com.alltej.eventmngmt.payload.AttendeeRequest;
 import com.alltej.eventmngmt.payload.EventResponse;
 import com.alltej.eventmngmt.payload.PagedResponse;
 import com.alltej.eventmngmt.repository.AttendeeRepository;
@@ -65,6 +68,18 @@ public class EventServiceImpl implements IEventService {
 
         return new PagedResponse<>(eventResponses, events.getNumber(),
                 events.getSize(), events.getTotalElements(), events.getTotalPages(), events.isLast());
+    }
+
+    @Override
+    public Attendee addAttendee(Long eventId, AttendeeRequest request) {
+        final Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));
+
+        Attendee attendee = new Attendee();
+        attendee.setFullName(request.getFullName());
+        attendee.setEmailAddress(request.getEmailAddress());
+        attendee.setEvent(event);
+        return attendeeRepository.save(attendee);
     }
 
     private Map<Long, Long> getEventAttendeeCountMap(List<Long> eventIds) {

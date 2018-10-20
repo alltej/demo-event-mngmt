@@ -67,6 +67,7 @@ public class CalendarController {
 
     }
 
+    @Deprecated //use the EventController addAttendee
     @PostMapping("/{calendarId}/events/{eventId}/attendees")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> addAttendee(@PathVariable Long calendarId, @PathVariable Long eventId,
